@@ -16,12 +16,41 @@
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+body{
+  background-image: url(..//../public/grayaura.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  background-size: cover;
+  position: relative;
 }
+.Wrapper{
+  display: flex;
+  padding: 120px 0px;
+  gap: 16px;
+  justify-content: center;
+ }
+ .count{
+   font-size: 16px;
+   color: gray;
+ }
+ .task-board{
+  width: 294px;
+  background-color: #ebecf0;
+  border-radius: 8px;
+  padding: 8px;
+  height: min-content;
+ }
+  .fa-plus:before {
+    content: "\2b";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    -webkit-font-smoothing: antialiased;
+    display: var(--fa-display,inline-block);
+    font-style: normal;
+    font-variant: normal;
+    line-height: 1;
+    text-rendering: auto;
+    padding: 8px;
+  }
+
