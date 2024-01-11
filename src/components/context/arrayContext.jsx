@@ -5,16 +5,12 @@ export const dataArrayContext = createContext();
 export const ArrayProvider = ({ children }) => {
   const [dataArray, setDataArray] = useState([]);
 
-  const updateArrayData = (newData) => {
-    setDataArray(newData);
-  };
-
   const addTask = (newTask) => {
     setDataArray((prevData) => [...prevData, newTask]);
   };
 
   return (
-    <dataArrayContext.Provider value={{ dataArray, updateArrayData, addTask }}>
+    <dataArrayContext.Provider value={{ dataArray, addTask }}>
       {children}
     </dataArrayContext.Provider>
   );

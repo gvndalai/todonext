@@ -2,14 +2,17 @@ import React, { useContext, useState } from "react";
 import { dataArrayContext } from "./context/arrayContext";
 
 export const Form = () => {
-  const { dataArray, updateArrayData, addTask } = useContext(dataArrayContext);
+  const [open, setOpen] = useState(false);
+  const { dataArray, addTask } = useContext(dataArrayContext);
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [status, setStatus] = useState("");
   const [priority, setPriority] = useState("");
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
     const newTask = {
       id: Math.floor(Math.random() * 10000),
       title: title,
@@ -18,7 +21,7 @@ export const Form = () => {
       priority: priority,
     };
     console.log(newTask);
-    addTask();
+    addTask(newTask);
 
     setTitle("");
     setDescription("");
@@ -26,10 +29,17 @@ export const Form = () => {
     setPriority("");
   };
   return (
-    <div className="Backdrop fixed top-0 w-screen h-screen  flex items-center">
+    <div
+      className={`Backdrop fixed top-0 w-screen h-screen  flex items-center ${
+        open && "hidden"
+      }`}
+    >
       <div className="w-screen h-screen bg-black opacity-55"></div>
-      <div class="Add-task-pop-up flex justify-center items-center w-screen h-screen absolute">
-        <form className="bg-white w-[400px] p-4 rounded-[8px] flex flex-col gap-[8px]">
+      <div className="Add-task-pop-up flex justify-center items-center w-screen h-screen absolute">
+        <form
+          className="bg-white w-[400px] p-4 rounded-[8px] flex flex-col gap-[8px]"
+          onSubmit={handleSubmit}
+        >
           <h1 className="text-[32px] font-bold">Add Task</h1>
           <div id="New-task-title" className="flex flex-col">
             Title
@@ -83,14 +93,17 @@ export const Form = () => {
               <option value="high">High</option>
             </select>
           </div>
-          <div
+          <button
             id="Adding-task-button"
+            type="submit"
             href="/"
             className="border border-solid border-black rounded-[4px] text-white bg-black text-center"
-            onClick={handleSubmit}
+            onClick={() => {
+              setOpen(true);
+            }}
           >
             Add task
-          </div>
+          </button>
         </form>
       </div>
     </div>
