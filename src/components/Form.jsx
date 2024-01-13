@@ -97,7 +97,7 @@ export const Form = () => {
             id="Adding-task-button"
             type="submit"
             href="/"
-            className="border border-solid border-black rounded-[4px] text-white bg-black text-center"
+            className="border border-solid border-black rounded-[4px] text-white bg-black text-center hover:bg-white hover:text-black"
             onClick={() => {
               setOpen(true);
             }}

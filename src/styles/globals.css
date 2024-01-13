@@ -76,7 +76,13 @@ body{
 .fa-edit:before, .fa-pen-to-square:before {
   content: "\f044";
 }
-  
+.priority {
+  width: fit-content;
+  padding: 4px 8px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  font-size: 12px;
+}
 .card .done {
   border: 1px solid rgba(0, 0, 0, 0.3);
   width: 24px;

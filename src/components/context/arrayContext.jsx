@@ -10,7 +10,7 @@ export const ArrayProvider = ({ children }) => {
   };
 
   return (
-    <dataArrayContext.Provider value={{ dataArray, addTask }}>
+    <dataArrayContext.Provider value={{ addTask, setDataArray, dataArray }}>
       {children}
     </dataArrayContext.Provider>
   );
