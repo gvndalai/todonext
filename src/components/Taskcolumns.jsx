@@ -5,9 +5,16 @@ import { Form } from "./Form";
 import Head from "next/head";
 export const Taskcolumns = () => {
   const [open, setOpen] = useState(false);
-
   const { dataArray, setDataArray } = useContext(dataArrayContext);
   // const [dataArray, setDataArray] = useState([]);
+  const countTasksByStatus = (status) => {
+    return dataArray.filter((el) => el.status === status).length;
+  };
+
+  const todoCount = countTasksByStatus("Todo");
+  const inProgressCount = countTasksByStatus("In-progress");
+  const stuckCount = countTasksByStatus("Stuck");
+  const doneCount = countTasksByStatus("Done");
 
   const remove = (taskId) => {
     const updatedArray = dataArray.filter((task) => task.id !== taskId);
@@ -21,7 +28,7 @@ export const Taskcolumns = () => {
     if (taskToUpdate) {
       taskToUpdate.status = "Done";
 
-      // setDataArray([...dataArray]);
+      setDataArray([...dataArray]);
     }
   };
 
@@ -30,8 +37,11 @@ export const Taskcolumns = () => {
       <Head></Head>
       <div className="flex gap-[16px] Kanban">
         <div className="task-board gap-[8px]">
-          <div className="task-board-header p-2 flex text-[20px] items-center font-semibold mb-2">
-            To do <span className="count" id="todo-count"></span>
+          <div className="task-board-header p-2 flex text-[20px] items-center font-semibold mb-2 gap-[8px]">
+            To do{" "}
+            <span className="count" id="todo-count">
+              {todoCount}
+            </span>
           </div>
           <div className="task-card flex flex-col gap-[8px]" id="todo">
             {dataArray
@@ -100,8 +110,11 @@ export const Taskcolumns = () => {
           </div>
         </div>
         <div className="task-board">
-          <div className="task-board-header p-2 flex text-[20px] items-center font-semibold mb-2">
-            In progress<span className="count" id="inprogress-count"></span>
+          <div className="task-board-header p-2 flex text-[20px] items-center font-semibold mb-2 gap-[8px]">
+            In progress
+            <span className="count" id="inprogress-count">
+              {inProgressCount}
+            </span>
           </div>
           <div className="task-card" id="stuck">
             {dataArray
@@ -170,8 +183,11 @@ export const Taskcolumns = () => {
           </div>
         </div>
         <div className="task-board">
-          <div className="task-board-header p-2 flex text-[20px] items-center font-semibold mb-2">
-            Stuck <span className="count" id="stuck-count"></span>
+          <div className="task-board-header p-2 flex text-[20px] items-center font-semibold mb-2 gap-[8px]">
+            Stuck{" "}
+            <span className="count" id="stuck-count">
+              {stuckCount}
+            </span>
           </div>
           <div className="task-card" id="stuck">
             {dataArray
@@ -240,8 +256,11 @@ export const Taskcolumns = () => {
           </div>
         </div>
         <div className="task-board">
-          <div className="task-board-header p-2 flex text-[20px] items-center font-semibold mb-2">
-            Done <span className="count" id="done-count"></span>
+          <div className="task-board-header p-2 flex text-[20px] items-center font-semibold mb-2 gap-[8px]">
+            Done{" "}
+            <span className="count" id="done-count">
+              {doneCount}
+            </span>
           </div>
           <div className="task-card" id="done">
             {dataArray

@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { dataArrayContext } from "./context/arrayContext";
+import { Error } from "./Error";
 
 export const Form = () => {
   const [open, setOpen] = useState(false);
@@ -9,24 +10,39 @@ export const Form = () => {
   const [description, setDescription] = useState("");
   const [status, setStatus] = useState("");
   const [priority, setPriority] = useState("");
+  const [error, setError] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const newTask = {
-      id: Math.floor(Math.random() * 10000),
-      title: title,
-      description: description,
-      status: status,
-      priority: priority,
-    };
-    console.log(newTask);
-    addTask(newTask);
-
-    setTitle("");
-    setDescription("");
-    setStatus("");
-    setPriority("");
+    if (!title.trim()) {
+      setOpen(false);
+      setError(true);
+    } else if (!description.trim()) {
+      setOpen(false);
+      setError(true);
+    } else if (!status.trim()) {
+      setOpen(false);
+      setError(true);
+    } else if (!priority.trim()) {
+      setOpen(false);
+      setError(true);
+    } else {
+      setError(false);
+      const newTask = {
+        id: Math.floor(Math.random() * 10000),
+        title: title,
+        description: description,
+        status: status,
+        priority: priority,
+      };
+      console.log(newTask);
+      addTask(newTask);
+      setTitle("");
+      setDescription("");
+      setStatus("");
+      setPriority("");
+    }
   };
   return (
     <div
@@ -93,6 +109,7 @@ export const Form = () => {
               <option value="high">High</option>
             </select>
           </div>
+          {error && <Error onClose={() => setError(false)} />}
           <button
             id="Adding-task-button"
             type="submit"
