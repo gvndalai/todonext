@@ -51,7 +51,10 @@ export const Form = () => {
       }`}
     >
       <div className="w-screen h-screen bg-black opacity-55"></div>
-      <div className="Add-task-pop-up flex justify-center items-center w-screen h-screen absolute">
+      <div
+        className="Add-task-pop-up flex justify-center items-center w-screen h-screen absolute"
+        onClick={() => open && setOpen(false)}
+      >
         <form
           className="bg-white w-[400px] p-4 rounded-[8px] flex flex-col gap-[8px]"
           onSubmit={handleSubmit}
